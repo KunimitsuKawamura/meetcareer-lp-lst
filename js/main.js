@@ -14,12 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Modal menu (mobile)
+  // Hamburger menu toggle (mobile)
   const hamburger = document.getElementById('hamburger');
   const modalMenu = document.getElementById('modal-menu');
   const modalClose = document.getElementById('modal-close');
   const modalBackdrop = document.getElementById('modal-backdrop');
   const stickyCta = document.getElementById('sticky-cta');
+
+  // Sticky CTA fade-in on scroll
+  if (stickyCta) {
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      if (!hero) return;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom < 0) {
+        stickyCta.classList.add('is-visible');
+      } else {
+        stickyCta.classList.remove('is-visible');
+      }
+    }, { passive: true });
+  }
 
   function openMenu() {
     modalMenu.classList.add('is-open');
