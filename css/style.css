@@ -860,7 +860,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hubspot-active .sec-rsv__embed-wrap .meetings-iframe-container {
-  min-height: 100vh;
+  min-height: 0;
+}
+
+.hubspot-active .sec-rsv__embed-wrap iframe {
+  min-height: 80vh;
 }
 
 /* Back button (hidden by default, shown in fullscreen) */
