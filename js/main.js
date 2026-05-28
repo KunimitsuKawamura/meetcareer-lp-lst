@@ -43,28 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
     modalBackdrop.addEventListener('click', closeMenu);
   }
 
-  // HubSpot embed: hide footer & sticky CTA when form is active
+  // Hide footer & sticky CTA when reservation section is visible
   const footer = document.querySelector('.footer');
   const rsv = document.querySelector('.sec-rsv');
 
-  // Listen for HubSpot postMessage (sent when user interacts with calendar/form)
-  window.addEventListener('message', (event) => {
-    if (event.data && typeof event.data === 'string' && event.data.includes('meetings')) {
-      if (footer) footer.style.display = 'none';
-      if (stickyCta) stickyCta.style.display = 'none';
-      if (rsv) rsv.style.paddingBottom = '0';
-    }
-  });
-
-  // Also hide sticky CTA when reservation section is in viewport
-  if (rsv && stickyCta) {
+  if (rsv) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          stickyCta.style.display = 'none';
+          if (footer) footer.style.display = 'none';
+          if (stickyCta) stickyCta.style.display = 'none';
+        } else {
+          if (footer) footer.style.display = '';
+          if (stickyCta) stickyCta.style.display = '';
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
     observer.observe(rsv);
   }
 });
