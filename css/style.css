@@ -954,15 +954,24 @@ h1, h2, h3, h4, h5, h6 {
     padding: 16px 24px;
   }
 
+  .header__logo {
+    width: 140px;
+  }
+
   .header__nav {
     gap: 8px;
   }
 
+  .header__link {
+    font-size: 13px;
+  }
+
   .header__link--last {
-    margin-right: 16px;
+    margin-right: 12px;
   }
 
   .header__cta {
+    font-size: 16px;
     padding: 8px 16px;
   }
 }
