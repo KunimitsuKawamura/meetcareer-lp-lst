@@ -54,12 +54,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function exitHubSpotMode() {
-    hubspotActive = false;
-    document.body.classList.remove('hubspot-active');
-    const rsv = document.querySelector('.sec-rsv');
-    if (rsv) {
-      rsv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // Fade to white → restore layout → scroll → fade in
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:0;transition:opacity 0.2s';
+    document.body.appendChild(overlay);
+
+    // Fade in overlay
+    requestAnimationFrame(() => {
+      overlay.style.opacity = '1';
+    });
+
+    setTimeout(() => {
+      // Restore layout while hidden
+      hubspotActive = false;
+      document.body.classList.remove('hubspot-active');
+      const rsv = document.querySelector('.sec-rsv');
+      if (rsv) {
+        rsv.scrollIntoView({ block: 'start' });
+      }
+
+      // Fade out overlay
+      requestAnimationFrame(() => {
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 200);
+      });
+    }, 200);
   }
 
   // Back button
