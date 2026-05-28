@@ -1,0 +1,1294 @@
+/* =============================================
+   ミートキャリア 広告専用LP
+   元ページ (Studio.Design) の sd- クラス値を忠実再現
+   ============================================= */
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: block;
+  min-height: 100vh;
+  background: #eeeeee;
+  font-family: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  background: transparent;
+  color: #333;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  line-height: 1;
+  margin: 0;
+}
+
+/* =============================================
+   HEADER (symbol-1)
+   固定ヘッダー。box-shadow + white bg
+   ============================================= */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  background: #ffffff;
+  box-shadow: rgba(208, 203, 191, 0.4) 0px 2px 5px;
+  padding: 16px 48px;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo-link {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s;
+}
+
+.header__logo-link:hover {
+  opacity: 0.5;
+}
+
+.header__logo {
+  width: 160px;
+  height: auto;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.header__link {
+  color: #2c2a25;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.header__link:hover {
+  color: #e89b27;
+}
+
+/* sd-15: last nav link before CTAs */
+.header__link--last {
+  margin-right: 24px;
+}
+
+.header__divider {
+  display: block;
+  width: 1px;
+  height: 15px;
+  background: #b3b3b3;
+  flex-shrink: 0;
+}
+
+/* theme-86bc47f7: font-size 18px, weight 700, line-height 1.6 */
+.header__cta {
+  border-radius: 32px;
+  color: #fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 8px 20px;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+
+.header__cta:hover {
+  opacity: 0.5;
+}
+
+.header__cta--primary {
+  background: linear-gradient(#e89b27, #ffb950);
+}
+
+.header__cta--secondary {
+  background: #64bbbf;
+}
+
+.header__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__hamburger span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #c88521;
+}
+
+/* =============================================
+   MODAL MENU (mobile)
+   元サイト modal-menu 準拠
+   ============================================= */
+.modal-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.modal-menu.is-open {
+  display: block;
+}
+
+.modal-menu__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.modal-menu__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-menu__panel {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 6px 15px;
+  width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  margin: 20px;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-menu__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.modal-menu__logo {
+  width: 200px;
+  height: auto;
+}
+
+.modal-menu__close {
+  background: none;
+  border: none;
+  color: #c88521;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+}
+
+.modal-menu__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.modal-menu__link {
+  color: #2c2a25;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.2;
+  text-decoration: none;
+}
+
+.modal-menu__cta {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  padding: 10px 24px;
+  border-radius: 32px;
+  color: #fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 12px;
+}
+
+.modal-menu__cta--primary {
+  background: linear-gradient(#e89b27, #ffb950);
+}
+
+.modal-menu__cta--secondary {
+  background: #64bbbf;
+}
+
+/* =============================================
+   HERO (sd-2)
+   height: 280px, margin-top: 80px, padding: 0 96px
+   bg: left center, size 120%, brightness(0.7)
+   ============================================= */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 0;
+  gap: 20px;
+  height: 280px;
+  margin: 80px 0 0;
+  padding: 0 96px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero__bg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+  background-image: url('../images/hero-bg.jpg');
+  background-position: left center;
+  background-size: 120%;
+  background-repeat: no-repeat;
+  filter: brightness(0.7);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  width: auto;
+  max-width: 100%;
+}
+
+.hero__title {
+  color: #ffffff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+  width: auto;
+  max-width: 100%;
+}
+
+.hero__subtitle {
+  color: #ffffff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* =============================================
+   SECTION COMMON — Theme text styles
+   ============================================= */
+
+/* theme-79b58953 — section labels (FLOW, MEDIA, VOICE) */
+.sec-label {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 2;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.sec-label--gold {
+  color: #c88521;
+}
+
+.sec-label--center {
+  justify-content: center;
+  text-align: center;
+}
+
+/* theme-dcb91420 — section headings */
+.sec-heading {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+}
+
+.sec-heading--dark {
+  color: #324451;
+}
+
+/* =============================================
+   FLOW SECTION (sd-6)
+   bg: white, padding: 48px 96px
+   inner width: 72vw
+   ============================================= */
+.sec-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #ffffff;
+  padding: 48px 96px;
+  width: 100%;
+}
+
+.sec-flow__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 72vw;
+  max-width: 72vw;
+}
+
+.sec-flow__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0;
+}
+
+.sec-flow__steps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
+}
+
+/* divider line — sd-12/21/30/39 */
+.sec-flow__divider {
+  background: #eeeeee;
+  height: 2px;
+  width: 100%;
+}
+
+/* step row — sd-13/22/31 */
+.sec-flow__step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 48px;
+  width: 100%;
+}
+
+/* step image — sd-14/23/32 + sd-15/24/33 */
+.sec-flow__step-img-wrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sec-flow__step-img {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+}
+
+/* STEP 02, 03 are 200x200 */
+.sec-flow__step:nth-child(4) .sec-flow__step-img,
+.sec-flow__step:nth-child(6) .sec-flow__step-img {
+  width: 200px;
+  height: 200px;
+}
+
+/* step body — sd-16/25/34 */
+.sec-flow__step-body {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sec-flow__step-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* step number — sd-18/27/36 */
+.sec-flow__step-num {
+  color: #c88521;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 2;
+  display: flex;
+  align-items: center;
+}
+
+/* step title — theme-5286a3a1 */
+.sec-flow__step-title {
+  color: #324451;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+}
+
+/* step desc — theme-429a329a */
+.sec-flow__step-desc {
+  color: #333;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+  display: flex;
+  align-items: center;
+  word-spacing: 1px;
+}
+
+/* =============================================
+   MEDIA SECTION (sd-40)
+   bg: white, padding: 48px 96px
+   ============================================= */
+.sec-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 48px 96px;
+  width: 100%;
+}
+
+.sec-media__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sec-media__heading {
+  color: #2c2a25;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.sec-media__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 72vw;
+  max-width: 72vw;
+}
+
+.sec-media__logos img {
+  width: 180px;
+  height: auto;
+}
+
+/* =============================================
+   VOICE SECTION (sd-54)
+   bg: #fdf9f3, padding: 48px 96px
+   ============================================= */
+.sec-voice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fdf9f3;
+  padding: 48px 96px;
+  width: 100%;
+}
+
+.sec-voice__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sec-voice__heading {
+  color: #2c2a25;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+/* cards row — sd-58 */
+.sec-voice__cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0 24px;
+  width: 100%;
+}
+
+/* single card — sd-59/66 */
+.sec-voice__card {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  background: #ffffff;
+  padding: 30px;
+}
+
+/* quote text — sd-60/67, left border orange */
+.sec-voice__quote {
+  border-left: 5px solid #e89b27;
+  padding: 0 0 0 12px;
+  color: #2c2a25;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+  display: flex;
+  align-items: center;
+  word-spacing: 1px;
+}
+
+/* profile row — sd-61 */
+.sec-voice__profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0 12px;
+}
+
+/* avatar — sd-62 */
+.sec-voice__avatar {
+  width: 50px;
+  height: auto;
+  border-radius: 0;
+}
+
+/* info — sd-63 */
+.sec-voice__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* name — sd-64 */
+.sec-voice__name {
+  color: #324451;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* job — sd-65 */
+.sec-voice__job {
+  color: #333;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* =============================================
+   CTA + VIDEO (sd-73)
+   bg: white, padding: 48px 96px
+   sd-74: row layout (deco + heading + deco)
+   sd-78: video below
+   ============================================= */
+.sec-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 48px 96px;
+  width: 100%;
+}
+
+/* sd-74: row with deco lines and heading */
+.sec-cta__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 12px;
+}
+
+/* decorative lines — sd-75/77 */
+.sec-cta__deco {
+  background: #324451;
+  height: 2px;
+  width: 60px;
+  flex: 0 0 auto;
+  rotate: 70deg;
+}
+
+.sec-cta__deco--right {
+  rotate: -70deg;
+}
+
+/* heading — sd-76 */
+.sec-cta__heading {
+  color: #324451;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+/* video — sd-78 */
+.sec-cta__video-wrap {
+  flex: 0 0 auto;
+  width: 280px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.sec-cta__video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =============================================
+   RESERVATION (sd-79)
+   bg: white, position relative, z-index 1
+   ============================================= */
+.sec-rsv {
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.sec-rsv__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+
+/* inner white box — sd-81 */
+.sec-rsv__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 35px 60px;
+  width: 100%;
+  gap: 0;
+}
+
+/* title — sd-83, theme-dcb91420 with override */
+.sec-rsv__title {
+  color: #e89b27;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+/* check badges row — sd-84 */
+.sec-rsv__checks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* single badge — sd-85/88/91 */
+.sec-rsv__badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #e89b27;
+  border-radius: 2px;
+  gap: 5px;
+  padding: 2px 6px;
+}
+
+/* check icon — sd-86/89/92 */
+.sec-rsv__check-icon {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* check text — sd-87/90/93 */
+.sec-rsv__check-text {
+  color: #ffffff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* iframe container */
+.sec-rsv__iframe-wrap {
+  background: transparent;
+  height: 800px;
+  width: 1000px;
+  max-width: 100%;
+}
+
+.sec-rsv__iframe-wrap iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+/* Touch guard — prevents iframe from stealing scroll on mobile */
+.sec-rsv__touch-guard {
+  display: none;
+}
+
+.sec-rsv__iframe-wrap {
+  position: relative;
+}
+
+/* =============================================
+   STICKY CTA (mobile only)
+   画面下部に固定表示される3分ワークボタン
+   ============================================= */
+.sticky-cta {
+  display: none;
+}
+
+/* =============================================
+   FOOTER (symbol-2)
+   bg: white, padding: 24px, links + logo + copy
+   ============================================= */
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  width: 100%;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  padding: 24px;
+  width: 100%;
+}
+
+.footer__links-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  width: 960px;
+  max-width: 100%;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__link {
+  color: #2c2a25;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 2;
+  margin: 0 16px 0 0;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+
+.footer__link:hover {
+  opacity: 0.3;
+}
+
+.footer__logo {
+  width: 160px;
+  height: auto;
+  margin: 16px 0;
+}
+
+.footer__copy {
+  color: #333;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 2;
+  margin: 0 0 16px;
+}
+
+/* =============================================
+   RESPONSIVE — Tablet (~1024px)
+   Block 11 overrides
+   ============================================= */
+@media (max-width: 1200px) {
+  .sec-flow {
+    padding: 96px 48px;
+  }
+
+  .sec-flow__step {
+    gap: 30px;
+  }
+
+  .sec-flow__step-desc {
+    font-size: 0.9rem;
+  }
+
+  .sec-flow__step-num {
+    font-size: 0.9rem;
+  }
+
+  .sec-media {
+    padding: 48px;
+  }
+
+  .sec-voice {
+    padding: 48px;
+  }
+
+  .sec-voice__cards {
+    align-items: stretch;
+  }
+
+  .sec-cta {
+    padding: 48px;
+  }
+
+  .header__nav .header__link:nth-child(n+9) {
+    display: none;
+  }
+}
+
+/* =============================================
+   RESPONSIVE — Mobile (~767px)
+   Block 12 overrides
+   ============================================= */
+@media (max-width: 767px) {
+  /* Header */
+  .header {
+    padding: 12px 16px;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__hamburger {
+    display: flex;
+  }
+
+  /* Hero — sd-2 mobile */
+  .hero {
+    height: auto;
+    margin: 50px 0 0;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .hero__bg {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero__content {
+    gap: 16px;
+  }
+
+  .hero__title {
+    font-size: 28px;
+  }
+
+  .hero__subtitle {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  /* Section labels & headings — mobile unified */
+  .sec-label {
+    font-size: 16px;
+  }
+
+  .sec-heading {
+    font-size: 5.36vw;
+  }
+
+  .sec-media__heading,
+  .sec-voice__heading,
+  .sec-cta__heading {
+    font-size: 5.36vw;
+  }
+
+  /* Flow */
+  .sec-flow {
+    padding: 48px 24px;
+  }
+
+  .sec-flow__inner {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .sec-flow__header {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .sec-flow__header .sec-heading {
+    justify-content: center;
+  }
+
+  .sec-flow__steps {
+    gap: 24px;
+  }
+
+  .sec-flow__step {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .sec-flow__step-img-wrap {
+    margin-bottom: 8px;
+  }
+
+  .sec-flow__step-img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .sec-flow__step-body {
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sec-flow__step-head {
+    gap: 0;
+    align-items: center;
+  }
+
+  .sec-flow__step-num {
+    font-size: 14px;
+  }
+
+  .sec-flow__step-title {
+    font-size: 22px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .sec-flow__step-desc {
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Media */
+  .sec-media {
+    padding: 48px 16px;
+  }
+
+  .sec-media__heading {
+    margin-bottom: 48px;
+  }
+
+  .sec-media__logos {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sec-media__logos img {
+    width: 120px;
+  }
+
+  /* Voice — cards stack vertically */
+  .sec-voice {
+    padding: 48px 24px;
+  }
+
+  .sec-voice__cards {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sec-voice__card {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .sec-voice__name {
+    font-size: 16px;
+  }
+
+  .sec-voice__job {
+    font-size: 12px;
+  }
+
+  /* CTA */
+  .sec-cta {
+    padding: 48px 8px;
+  }
+
+  .sec-cta__row {
+    margin-bottom: 16px;
+  }
+
+  .sec-cta__deco {
+    width: 50px;
+  }
+
+  .sec-cta__heading {
+    margin: 0 0 24px;
+    font-size: 5.36vw;
+  }
+
+  .sec-cta__video-wrap {
+    flex: 1 1 auto;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .sec-cta__video-wrap video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Reservation */
+  .sec-rsv__header {
+    padding: 32px 20px 24px;
+  }
+
+  .sec-rsv__title {
+    color: rgb(255, 152, 31);
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .sec-rsv__checks {
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sec-rsv__badge {
+    gap: 2px;
+  }
+
+  .sec-rsv__check-text {
+    font-size: 12px;
+  }
+
+  .sec-rsv__iframe-wrap {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+  }
+
+  .sec-rsv__touch-guard {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    touch-action: pan-y;
+  }
+
+  /* Sticky CTA mobile */
+  .sticky-cta {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 24px 20px;
+    z-index: 100;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .sticky-cta__link {
+    display: block;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #e89b27, #ffb950);
+    color: #fff;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px rgba(232, 155, 39, 0.4);
+    pointer-events: auto;
+  }
+
+  /* Footer mobile */
+  .footer__inner {
+    padding: 32px 24px;
+  }
+
+  .footer__links-row {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .footer__links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 0;
+  }
+
+  .footer__link {
+    font-size: 11px;
+    margin: 0 12px 0 0;
+  }
+
+  .footer__logo {
+    width: 160px;
+    margin: 32px 0 16px;
+  }
+
+  .footer__copy {
+    font-size: 11px;
+  }
+}
+
+/* =============================================
+   RESPONSIVE — Very small mobile
+   ============================================= */
+@media (max-width: 400px) {
+  .hero__title {
+    font-size: 18px;
+  }
+
+  .hero__subtitle {
+    font-size: 11px;
+  }
+
+  .sec-flow__step-title {
+    font-size: 18px;
+  }
+
+  .sec-media__logos img {
+    width: 100px;
+  }
+
+  .sec-cta__heading {
+    font-size: 18px;
+  }
+
+  .sec-cta__deco {
+    width: 40px;
+  }
+
+  .sec-cta__video-wrap {
+    width: 240px;
+  }
+
+  .sec-rsv__title {
+    font-size: 18px;
+  }
+
+  .sec-rsv__iframe-wrap {
+    height: 600px;
+  }
+}
+
