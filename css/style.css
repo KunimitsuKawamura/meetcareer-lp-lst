@@ -863,6 +863,28 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100vh;
 }
 
+/* Back button (hidden by default, shown in fullscreen) */
+.sec-rsv__back {
+  display: none;
+}
+
+.hubspot-active .sec-rsv__back {
+  display: block;
+  background: none;
+  border: none;
+  color: #c17a30;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 16px 24px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.hubspot-active .sec-rsv__back:hover {
+  text-decoration: underline;
+}
+
 /* =============================================
    FOOTER (symbol-2)
    bg: white, padding: 24px, links + logo + copy

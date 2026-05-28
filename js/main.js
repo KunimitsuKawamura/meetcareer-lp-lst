@@ -50,11 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hubspotActive) return;
     hubspotActive = true;
     document.body.classList.add('hubspot-active');
-    // Scroll to reservation section
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function exitHubSpotMode() {
+    hubspotActive = false;
+    document.body.classList.remove('hubspot-active');
     const rsv = document.querySelector('.sec-rsv');
     if (rsv) {
       rsv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  // Back button
+  const backBtn = document.getElementById('hubspot-back');
+  if (backBtn) {
+    backBtn.addEventListener('click', exitHubSpotMode);
   }
 
   // Detect click inside HubSpot iframe via window blur
