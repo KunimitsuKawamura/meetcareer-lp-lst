@@ -826,6 +826,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =============================================
+   HUBSPOT FULLSCREEN MODE
+   日付クリック後、HubSpot画面を全画面表示
+   ============================================= */
+.hubspot-active .header {
+  display: none;
+}
+
+.hubspot-active .footer {
+  display: none;
+}
+
+.hubspot-active .sticky-cta {
+  display: none !important;
+}
+
+.hubspot-active .hero,
+.hubspot-active .sec-flow,
+.hubspot-active .sec-media,
+.hubspot-active .sec-voice,
+.hubspot-active .sec-cta {
+  display: none;
+}
+
+.hubspot-active .sec-rsv {
+  padding-top: 0;
+  min-height: 100vh;
+}
+
+.hubspot-active .sec-rsv__embed-wrap {
+  width: 100%;
+  max-width: 100%;
+}
+
+.hubspot-active .sec-rsv__embed-wrap .meetings-iframe-container {
+  min-height: 100vh;
+}
+
+/* =============================================
    FOOTER (symbol-2)
    bg: white, padding: 24px, links + logo + copy
    ============================================= */
