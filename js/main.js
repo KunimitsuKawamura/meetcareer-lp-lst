@@ -56,16 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function exitHubSpotMode() {
     // Fade to white → restore layout → scroll → fade in
     const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:0;transition:opacity 0.2s';
+    overlay.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:0;transition:opacity 0.35s ease';
     document.body.appendChild(overlay);
 
-    // Fade in overlay
+    // Fade in overlay (white screen)
     requestAnimationFrame(() => {
       overlay.style.opacity = '1';
     });
 
+    // Wait for white screen, then restore layout
     setTimeout(() => {
-      // Restore layout while hidden
       hubspotActive = false;
       document.body.classList.remove('hubspot-active');
       const rsv = document.querySelector('.sec-rsv');
@@ -73,12 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         rsv.scrollIntoView({ block: 'start' });
       }
 
-      // Fade out overlay
-      requestAnimationFrame(() => {
+      // Wait a frame for layout to settle, then fade out
+      setTimeout(() => {
         overlay.style.opacity = '0';
-        setTimeout(() => overlay.remove(), 200);
-      });
-    }, 200);
+        setTimeout(() => overlay.remove(), 350);
+      }, 50);
+    }, 350);
   }
 
   // Back button
