@@ -54,25 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function exitHubSpotMode() {
-    // Instant white overlay → restore layout behind it → fade out
-    const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999';
-    document.body.appendChild(overlay);
-
-    // Layout is hidden, restore now
-    hubspotActive = false;
-    document.body.classList.remove('hubspot-active');
-    const rsv = document.querySelector('.sec-rsv');
-    if (rsv) {
-      rsv.scrollIntoView({ block: 'start' });
-    }
-
-    // Wait for layout to settle, then fade out overlay
-    setTimeout(() => {
-      overlay.style.transition = 'opacity 0.3s';
-      overlay.style.opacity = '0';
-      setTimeout(() => overlay.remove(), 300);
-    }, 100);
+    window.location.href = window.location.pathname + '?v=14#reservation';
+    window.location.reload();
   }
 
   // Back button
