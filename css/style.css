@@ -939,10 +939,6 @@ h1, h2, h3, h4, h5, h6 {
   .sec-cta {
     padding: 48px;
   }
-
-  .header__nav .header__link:nth-child(n+9) {
-    display: none;
-  }
 }
 
 /* =============================================
