@@ -54,31 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function exitHubSpotMode() {
-    // Fade to white → restore layout → scroll → fade in
+    // Instant white overlay → restore layout behind it → fade out
     const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:0;transition:opacity 0.35s ease';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999';
     document.body.appendChild(overlay);
 
-    // Fade in overlay (white screen)
-    requestAnimationFrame(() => {
-      overlay.style.opacity = '1';
-    });
+    // Layout is hidden, restore now
+    hubspotActive = false;
+    document.body.classList.remove('hubspot-active');
+    const rsv = document.querySelector('.sec-rsv');
+    if (rsv) {
+      rsv.scrollIntoView({ block: 'start' });
+    }
 
-    // Wait for white screen, then restore layout
+    // Wait for layout to settle, then fade out overlay
     setTimeout(() => {
-      hubspotActive = false;
-      document.body.classList.remove('hubspot-active');
-      const rsv = document.querySelector('.sec-rsv');
-      if (rsv) {
-        rsv.scrollIntoView({ block: 'start' });
-      }
-
-      // Wait a frame for layout to settle, then fade out
-      setTimeout(() => {
-        overlay.style.opacity = '0';
-        setTimeout(() => overlay.remove(), 350);
-      }, 50);
-    }, 350);
+      overlay.style.transition = 'opacity 0.3s';
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 300);
+    }, 100);
   }
 
   // Back button
