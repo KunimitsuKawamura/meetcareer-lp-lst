@@ -62,10 +62,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 8px;
 }
 
 .header__left {
@@ -84,20 +88,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header__logo {
-  width: 160px;
+  width: clamp(120px, 12vw, 160px);
   height: auto;
+  flex-shrink: 0;
 }
 
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: clamp(4px, 0.8vw, 13px);
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .header__link {
   color: #2c2a25;
   font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: 14px;
+  font-size: clamp(11px, 1.1vw, 14px);
   font-weight: 500;
   line-height: 2;
   white-space: nowrap;
@@ -110,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* sd-15: last nav link before CTAs */
 .header__link--last {
-  margin-right: 24px;
+  margin-right: clamp(8px, 1.2vw, 24px);
 }
 
 .header__divider {
@@ -126,12 +133,13 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 32px;
   color: #fff;
   font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: 18px;
+  font-size: clamp(13px, 1.3vw, 18px);
   font-weight: 700;
   line-height: 1.6;
-  padding: 8px 20px;
+  padding: 8px clamp(12px, 1.2vw, 20px);
   white-space: nowrap;
   transition: opacity 0.3s;
+  flex-shrink: 0;
 }
 
 .header__cta:hover {
