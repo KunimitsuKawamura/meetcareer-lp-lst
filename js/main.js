@@ -43,37 +43,28 @@ document.addEventListener('DOMContentLoaded', () => {
     modalBackdrop.addEventListener('click', closeMenu);
   }
 
-  // Touch guard for iframe on mobile
-  const guard = document.getElementById('touch-guard');
-  if (guard) {
-    let startY = 0;
-    let startTime = 0;
-    let hideTimer = null;
+  // HubSpot embed: hide footer & sticky CTA when form is active
+  const footer = document.querySelector('.footer');
+  const rsv = document.querySelector('.sec-rsv');
 
-    guard.addEventListener('touchstart', (e) => {
-      startY = e.touches[0].clientY;
-      startTime = Date.now();
-    }, { passive: true });
+  // Listen for HubSpot postMessage (sent when user interacts with calendar/form)
+  window.addEventListener('message', (event) => {
+    if (event.data && typeof event.data === 'string' && event.data.includes('meetings')) {
+      if (footer) footer.style.display = 'none';
+      if (stickyCta) stickyCta.style.display = 'none';
+      if (rsv) rsv.style.paddingBottom = '0';
+    }
+  });
 
-    guard.addEventListener('touchend', (e) => {
-      const endY = e.changedTouches[0].clientY;
-      const dt = Date.now() - startTime;
-      const dy = Math.abs(endY - startY);
-
-      if (dt < 300 && dy < 10) {
-        guard.style.display = 'none';
-        clearTimeout(hideTimer);
-        hideTimer = setTimeout(() => {
-          guard.style.display = 'block';
-        }, 4000);
-      }
-    }, { passive: true });
-
-    window.addEventListener('scroll', () => {
-      if (guard.style.display === 'none') {
-        guard.style.display = 'block';
-        clearTimeout(hideTimer);
-      }
-    }, { passive: true });
+  // Also hide sticky CTA when reservation section is in viewport
+  if (rsv && stickyCta) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          stickyCta.style.display = 'none';
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(rsv);
   }
 });
