@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 5;
   background: #ffffff;
   box-shadow: rgba(208, 203, 191, 0.4) 0px 2px 5px;
-  padding: 16px 48px;
+  padding: 16px clamp(24px, 3.2vw, 48px);
 }
 
 .header__inner {
@@ -72,6 +72,8 @@ h1, h2, h3, h4, h5, h6 {
 .header__left {
   display: flex;
   align-items: center;
+  margin-right: clamp(12px, 1.5vw, 24px);
+  flex-shrink: 0;
 }
 
 .header__logo-link {
@@ -85,9 +87,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header__logo {
-  width: clamp(120px, 12vw, 160px);
+  width: clamp(130px, 11vw, 160px);
   height: auto;
-  flex-shrink: 0;
 }
 
 .header__nav {
@@ -101,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 .header__link {
   color: #2c2a25;
   font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: clamp(11px, 1.1vw, 14px);
+  font-size: clamp(12px, 0.95vw, 14px);
   font-weight: 500;
   line-height: 2;
   white-space: nowrap;
@@ -114,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* sd-15: last nav link before CTAs */
 .header__link--last {
-  margin-right: clamp(8px, 1.2vw, 24px);
+  margin-right: clamp(8px, 1vw, 24px);
 }
 
 .header__divider {
@@ -130,10 +131,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 32px;
   color: #fff;
   font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: clamp(13px, 1.3vw, 18px);
+  font-size: clamp(14px, 1.2vw, 18px);
   font-weight: 700;
   line-height: 1.6;
-  padding: 8px clamp(12px, 1.2vw, 20px);
+  padding: 8px clamp(14px, 1.1vw, 20px);
   white-space: nowrap;
   transition: opacity 0.3s;
   flex-shrink: 0;
