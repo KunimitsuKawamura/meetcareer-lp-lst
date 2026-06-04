@@ -206,7 +206,7 @@
     // フォーム・サンクス画面ではsticky CTAを非表示
     const stickyCta = document.querySelector('.sticky-cta');
     if (stickyCta) {
-      stickyCta.classList.toggle('sticky-cta--hidden', currentStep >= 3);
+      stickyCta.classList.toggle('sticky-cta--hidden', currentStep >= 2);
     }
   }
 
