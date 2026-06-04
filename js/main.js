@@ -42,36 +42,4 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', closeMenu);
   }
-
-  // HubSpot fullscreen mode: detect iframe click (date selection)
-  let hubspotActive = false;
-
-  function enterHubSpotMode() {
-    if (hubspotActive) return;
-    hubspotActive = true;
-    document.body.classList.add('hubspot-active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function exitHubSpotMode() {
-    window.location.href = window.location.pathname + '?v=14#reservation';
-    window.location.reload();
-  }
-
-  // Back button
-  const backBtn = document.getElementById('hubspot-back');
-  if (backBtn) {
-    backBtn.addEventListener('click', exitHubSpotMode);
-  }
-
-  // Detect click inside HubSpot iframe via window blur
-  window.addEventListener('blur', () => {
-    setTimeout(() => {
-      const active = document.activeElement;
-      if (active && active.tagName === 'IFRAME' &&
-          active.closest('.meetings-iframe-container')) {
-        enterHubSpotMode();
-      }
-    }, 0);
-  });
 });

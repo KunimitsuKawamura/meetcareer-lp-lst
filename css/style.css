@@ -802,19 +802,653 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 
-/* iframe container */
-/* HubSpot meetings embed container */
-.sec-rsv__embed-wrap {
+/* calendar container */
+.sec-rsv__calendar-wrap {
   width: 100%;
-  max-width: 1000px;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 16px 32px;
 }
 
-.sec-rsv__embed-wrap .meetings-iframe-container {
-  min-height: 700px;
+/* =============================================
+   CALENDAR UI — ステップインジケーター
+   ============================================= */
+.cal-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0 0 24px;
 }
 
-.sec-rsv__embed-wrap iframe {
-  border: none !important;
+.cal-steps__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.cal-steps__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eee;
+  color: #999;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.3s, color 0.3s;
+}
+
+.cal-steps__item--active .cal-steps__circle {
+  background: #e89b27;
+  color: #fff;
+}
+
+.cal-steps__item--done .cal-steps__circle {
+  background: #324451;
+  color: #fff;
+}
+
+.cal-steps__label {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  white-space: nowrap;
+}
+
+.cal-steps__item--active .cal-steps__label {
+  color: #e89b27;
+  font-weight: 700;
+}
+
+.cal-steps__item--done .cal-steps__label {
+  color: #324451;
+}
+
+.cal-steps__line {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #eee;
+  margin: 0 8px;
+  margin-bottom: 20px;
+  transition: background 0.3s;
+}
+
+.cal-steps__line--done {
+  background: #324451;
+}
+
+/* =============================================
+   CALENDAR UI — 月カレンダー
+   ============================================= */
+.cal-calendar {
+  background: #fff;
+}
+
+.cal-calendar__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 16px;
+}
+
+.cal-calendar__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fff;
+  color: #324451;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cal-calendar__nav-btn:hover:not(:disabled) {
+  background: #fdf9f3;
+}
+
+.cal-calendar__nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.cal-calendar__nav-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #324451;
+}
+
+.cal-calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  text-align: center;
+  padding: 0 0 8px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 4px;
+}
+
+.cal-calendar__weekday {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #999;
+  padding: 4px 0;
+}
+
+.cal-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cal-calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: default;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  padding: 0;
+}
+
+.cal-calendar__day--empty {
+  visibility: hidden;
+}
+
+.cal-calendar__day--available {
+  background: #fff8f0;
+  color: #c88521;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid #e89b27;
+}
+
+.cal-calendar__day--available:hover {
+  background: #e89b27;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(232, 155, 39, 0.3);
+}
+
+.cal-calendar__day--available:active {
+  transform: scale(0.95);
+}
+
+.cal-calendar__day--selected {
+  background: #e89b27;
+  color: #fff;
+  font-weight: 700;
+}
+
+.cal-calendar__day--disabled {
+  color: #ccc;
+  cursor: default;
+}
+
+.cal-calendar__day--sun {
+  color: #d44;
+}
+.cal-calendar__day--sun.cal-calendar__day--disabled {
+  color: #e8b8b8;
+}
+.cal-calendar__day--sun.cal-calendar__day--available {
+  color: #c88521;
+}
+
+.cal-calendar__day--sat {
+  color: #448;
+}
+.cal-calendar__day--sat.cal-calendar__day--disabled {
+  color: #b8b8cc;
+}
+.cal-calendar__day--sat.cal-calendar__day--available {
+  color: #c88521;
+}
+
+/* =============================================
+   CALENDAR UI — 時間帯選択
+   ============================================= */
+.cal-times {
+  padding: 0;
+}
+
+.cal-times__header {
+  padding: 0 0 16px;
+}
+
+.cal-times__date {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #324451;
+  margin: 0 0 8px;
+}
+
+.cal-times__back {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #c17a30;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.cal-times__back:hover {
+  text-decoration: underline;
+}
+
+.cal-times__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cal-times__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  background: #fff;
+  border: 1.5px solid #e89b27;
+  border-radius: 8px;
+  color: #c88521;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.cal-times__btn:hover {
+  background: #e89b27;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(232, 155, 39, 0.3);
+}
+
+.cal-times__btn:active {
+  transform: scale(0.98);
+}
+
+.cal-times__empty {
+  text-align: center;
+  color: #999;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  padding: 24px 0;
+}
+
+/* =============================================
+   CALENDAR UI — 情報入力フォーム
+   ============================================= */
+.cal-form__summary {
+  background: #fdf9f3;
+  border-left: 4px solid #e89b27;
+  padding: 12px 16px;
+  margin: 0 0 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.cal-form__summary-text {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #324451;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cal-form__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cal-form__row {
+  display: flex;
+  gap: 12px;
+}
+
+.cal-form__row .cal-form__field {
+  flex: 1;
+}
+
+.cal-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cal-form__label {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #324451;
+  line-height: 1.6;
+}
+
+.cal-form__required {
+  color: #d44;
+}
+
+.cal-form__input {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cal-form__input:focus {
+  outline: none;
+  border-color: #e89b27;
+  box-shadow: 0 0 0 3px rgba(232, 155, 39, 0.15);
+}
+
+.cal-form__input--error {
+  border-color: #d44;
+}
+
+.cal-form__input--error:focus {
+  box-shadow: 0 0 0 3px rgba(221, 68, 68, 0.15);
+}
+
+.cal-form__input--valid {
+  border-color: #4a9;
+}
+
+.cal-form__textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.cal-form__privacy-note {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.8;
+  margin: 4px 0 0;
+}
+
+.cal-form__checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cal-form__checkbox-wrap input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: #e89b27;
+  cursor: pointer;
+}
+
+.cal-form__checkbox-label {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.cal-form__checkbox-label a {
+  color: #c17a30;
+  text-decoration: underline;
+}
+
+.cal-form__submit-note {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #999;
+  line-height: 1.6;
+}
+
+.cal-form__error {
+  background: #fef2f2;
+  border: 1px solid #d44;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  color: #d44;
+  line-height: 1.6;
+}
+
+.cal-form__btn-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 0;
+}
+
+.cal-form__back {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #c17a30;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cal-form__back:hover {
+  text-decoration: underline;
+}
+
+.cal-form__submit {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  background: linear-gradient(135deg, #e89b27, #ffb950);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(232, 155, 39, 0.3);
+}
+
+.cal-form__submit:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 4px 16px rgba(232, 155, 39, 0.4);
+}
+
+.cal-form__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* =============================================
+   CALENDAR UI — サンクスメッセージ
+   ============================================= */
+.cal-thanks {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.cal-thanks__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4a9;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 auto 16px;
+}
+
+.cal-thanks__title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #324451;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.cal-thanks__details {
+  background: #fdf9f3;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.cal-thanks__detail {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.8;
+  margin: 0 0 4px;
+}
+
+.cal-thanks__detail:last-child {
+  margin-bottom: 0;
+}
+
+.cal-thanks__meet-link {
+  margin: 12px 0 0;
+  padding: 16px;
+  background: #fff;
+  border: 2px solid #e89b27;
+  border-radius: 8px;
+}
+
+.cal-thanks__meet-label {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #324451;
+  margin: 0 0 8px;
+}
+
+.cal-thanks__meet-url-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8f4ee;
+  border: 1px solid #e0d5c5;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.cal-thanks__meet-url-text {
+  flex: 1;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 13px;
+  color: #324451;
+  word-break: break-all;
+  user-select: all;
+}
+
+.cal-thanks__copy-btn {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #e89b27, #ffb950);
+  color: #fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.cal-thanks__copy-btn:hover {
+  box-shadow: 0 2px 8px rgba(232, 155, 39, 0.4);
+}
+
+.cal-thanks__copy-btn:active {
+  transform: scale(0.96);
+}
+
+.cal-thanks__copy-btn--done {
+  background: #4caf50;
+}
+
+.cal-thanks__email-note {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* =============================================
+   CALENDAR UI — ローディング
+   ============================================= */
+.cal-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 0;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  color: #999;
+}
+
+.cal-loading__spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid #eee;
+  border-top-color: #e89b27;
+  border-radius: 50%;
+  animation: cal-spin 0.7s linear infinite;
+}
+
+@keyframes cal-spin {
+  to { transform: rotate(360deg); }
 }
 
 /* =============================================
@@ -823,70 +1457,6 @@ h1, h2, h3, h4, h5, h6 {
    ============================================= */
 .sticky-cta {
   display: none;
-}
-
-/* =============================================
-   HUBSPOT FULLSCREEN MODE
-   日付クリック後、HubSpot画面を全画面表示
-   ============================================= */
-.hubspot-active .header {
-  display: none;
-}
-
-.hubspot-active .footer {
-  display: none;
-}
-
-.hubspot-active .sticky-cta {
-  display: none !important;
-}
-
-.hubspot-active .hero,
-.hubspot-active .sec-flow,
-.hubspot-active .sec-media,
-.hubspot-active .sec-voice,
-.hubspot-active .sec-cta {
-  display: none;
-}
-
-.hubspot-active .sec-rsv {
-  padding-top: 0;
-  min-height: 100vh;
-}
-
-.hubspot-active .sec-rsv__embed-wrap {
-  width: 100%;
-  max-width: 100%;
-}
-
-.hubspot-active .sec-rsv__embed-wrap .meetings-iframe-container {
-  min-height: 0;
-}
-
-.hubspot-active .sec-rsv__embed-wrap iframe {
-  min-height: 80vh;
-}
-
-/* Back button (hidden by default, shown in fullscreen) */
-.sec-rsv__back {
-  display: none;
-}
-
-.hubspot-active .sec-rsv__back {
-  display: block;
-  background: none;
-  border: none;
-  color: #c17a30;
-  font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 16px 24px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.hubspot-active .sec-rsv__back:hover {
-  text-decoration: underline;
 }
 
 /* =============================================
@@ -1266,6 +1836,13 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     pointer-events: none;
     animation: stickyCta-fadeIn 0.5s ease 0.3s both;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .sticky-cta--hidden {
+    opacity: 0 !important;
+    transform: translateY(100%) !important;
+    pointer-events: none !important;
   }
 
   @keyframes stickyCta-fadeIn {
@@ -1362,7 +1939,4 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
   }
 
-  .sec-rsv__embed-wrap .meetings-iframe-container {
-    min-height: 600px;
-  }
 }
