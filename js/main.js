@@ -64,4 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 予約セクションが画面内にある間は sticky CTA を非表示
+  const reservation = document.getElementById('reservation');
+  if (stickyCta && reservation) {
+    const stickyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          stickyCta.classList.add('sticky-cta--hidden');
+        } else {
+          stickyCta.classList.remove('sticky-cta--hidden');
+        }
+      });
+    }, { threshold: 0 });
+    stickyObserver.observe(reservation);
+  }
 });
