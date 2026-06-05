@@ -1922,12 +1922,11 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     pointer-events: none;
     animation: stickyCta-fadeIn 0.5s ease 0.3s both;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.4s ease;
   }
 
   .sticky-cta--hidden {
     opacity: 0 !important;
-    transform: translateY(100%) !important;
     pointer-events: none !important;
   }
 
