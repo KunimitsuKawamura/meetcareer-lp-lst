@@ -50,4 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', closeMenu);
   }
+
+  // モバイルメニュー内のアンカーリンク → メニューを閉じてからスクロール
+  document.querySelectorAll('.modal-menu__cta[href^="#"], .modal-menu__link[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      closeMenu();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    });
+  });
 });
