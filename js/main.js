@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const target = document.querySelector(anchor.getAttribute('href'));
       if (target) {
+        // モバイルメニューが開いていたら閉じてからスクロール
+        const modal = document.getElementById('modal-menu');
+        if (modal && modal.classList.contains('is-open')) {
+          modal.classList.remove('is-open');
+          document.body.style.overflow = '';
+          const sticky = document.getElementById('sticky-cta');
+          if (sticky) sticky.style.display = '';
+        }
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });

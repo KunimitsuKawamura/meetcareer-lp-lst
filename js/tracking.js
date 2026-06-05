@@ -137,7 +137,8 @@
   // === ヘッダーCTAクリック計測 ===
   document.querySelectorAll('.header__cta, .modal-menu__cta').forEach((cta) => {
     cta.addEventListener('click', () => {
-      const dest = cta.href.includes('work.meetcareer.net') ? '3min_work' : 'counseling';
+      const href = cta.getAttribute('href') || '';
+      const dest = href.includes('work.meetcareer.net') ? '3min_work' : 'reservation';
       sendEvent('lp_header_cta_click', {
         destination: dest,
         sections_viewed: viewedSections.size
