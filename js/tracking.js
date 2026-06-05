@@ -134,16 +134,6 @@
     });
   }
 
-  // === CTA+VIDEO セクション CTAクリック計測 ===
-  const videoCta = document.querySelector('.sec-cta__btn');
-  if (videoCta) {
-    videoCta.addEventListener('click', () => {
-      sendEvent('lp_video_cta_click', {
-        sections_viewed: viewedSections.size
-      });
-    });
-  }
-
   // === ヘッダーCTAクリック計測 ===
   document.querySelectorAll('.header__cta, .modal-menu__cta').forEach((cta) => {
     cta.addEventListener('click', () => {
