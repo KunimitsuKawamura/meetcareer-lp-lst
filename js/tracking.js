@@ -114,13 +114,32 @@
     if (typeof clarity === 'function') clarity('set', 'cal_step', 'booking_complete');
   });
 
-  // === 追従CTA（3分ワーク）クリック計測 ===
+  // === 追従CTA（予約セクションへ）クリック計測 ===
   const stickyCta = document.querySelector('.sticky-cta__link');
   if (stickyCta) {
     stickyCta.addEventListener('click', () => {
       sendEvent('lp_sticky_cta_click', {
+        destination: 'reservation',
         sections_viewed: viewedSections.size,
         reached_reservation: viewedSections.has('reservation') ? 'yes' : 'no'
+      });
+    });
+  }
+
+  // === Hero CTAクリック計測 ===
+  const heroCta = document.querySelector('.hero__cta');
+  if (heroCta) {
+    heroCta.addEventListener('click', () => {
+      sendEvent('lp_hero_cta_click');
+    });
+  }
+
+  // === CTA+VIDEO セクション CTAクリック計測 ===
+  const videoCta = document.querySelector('.sec-cta__btn');
+  if (videoCta) {
+    videoCta.addEventListener('click', () => {
+      sendEvent('lp_video_cta_click', {
+        sections_viewed: viewedSections.size
       });
     });
   }

@@ -345,6 +345,32 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
 }
 
+.hero__cta {
+  display: inline-block;
+  padding: 14px 40px;
+  background: linear-gradient(135deg, #e89b27, #ffb950);
+  color: #fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(232, 155, 39, 0.4);
+  transition: opacity 0.3s, transform 0.3s;
+  margin-top: 4px;
+}
+
+.hero__cta:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.hero__cta:active {
+  transform: translateY(0);
+}
+
 /* =============================================
    SECTION COMMON — Theme text styles
    ============================================= */
@@ -723,6 +749,32 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+.sec-cta__btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: linear-gradient(135deg, #e89b27, #ffb950);
+  color: #fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(232, 155, 39, 0.4);
+  transition: opacity 0.3s, transform 0.3s;
+  margin-top: 24px;
+}
+
+.sec-cta__btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.sec-cta__btn:active {
+  transform: translateY(0);
+}
+
 /* =============================================
    RESERVATION (sd-79)
    bg: white, position relative, z-index 1
@@ -800,6 +852,21 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
+}
+
+.sec-rsv__sub {
+  color: #666;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.8;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* sp-only: モバイルのみ表示する改行 */
+.sp-only {
+  display: none;
 }
 
 /* calendar container */
@@ -1641,6 +1708,18 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
   }
 
+  .hero__cta {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 32px;
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .sp-only {
+    display: inline;
+  }
+
   /* Section labels & headings — mobile unified */
   .sec-label {
     font-size: 16px;
@@ -1794,6 +1873,13 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: auto;
     object-fit: contain;
+  }
+
+  .sec-cta__btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 32px;
+    font-size: 17px;
   }
 
   /* Reservation */
