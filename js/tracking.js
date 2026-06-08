@@ -10,12 +10,23 @@
  *   lp_cal_form_start    — フォーム入力開始
  *   lp_cal_booking_complete — 予約完了
  *   lp_sticky_cta_click  — 追従CTA（3分ワーク）クリック
+ * 
+ * 送信先:
+ *   - G-LTE2F1MKP7 (LP専用プロパティ — gtag直接)
+ *   - G-ENX3EBCYTJ (MCP接続プロパティ — デイリーチェック用)
  */
 
 (function () {
   'use strict';
 
-  // GA4 イベント送信
+  // === デュアルGA4プロパティ設定 ===
+  // MCP接続先プロパティ（G-ENX3EBCYTJ）を追加登録
+  // これにより gtag('event', ...) が両プロパティに送信される
+  if (typeof gtag === 'function') {
+    gtag('config', 'G-ENX3EBCYTJ', { send_page_view: false });
+  }
+
+  // GA4 イベント送信（両プロパティに自動送信）
   function sendEvent(eventName, params) {
     if (typeof gtag === 'function') {
       gtag('event', eventName, params || {});
@@ -146,4 +157,3 @@
     });
   });
 })();
-
