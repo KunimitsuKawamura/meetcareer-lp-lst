@@ -1962,6 +1962,7 @@ h1, h2, h3, h4, h5, h6 {
   .sec-rsv__calendar-wrap {
     padding: 16px 12px 24px;
     border-radius: 12px;
+    max-width: calc(100% - 32px);
   }
 
   .cal-calendar {
