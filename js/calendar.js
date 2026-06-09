@@ -254,6 +254,16 @@
     container.setAttribute('role', 'application');
     container.setAttribute('aria-label', '日付選択カレンダー');
 
+    // アクション指示テキスト
+    const instruction = el('div', 'cal-instruction');
+    const instrMain = el('p', 'cal-instruction__main');
+    instrMain.textContent = 'ご都合の良い日をお選びください';
+    instruction.appendChild(instrMain);
+    const instrSub = el('p', 'cal-instruction__sub');
+    instrSub.textContent = '日付を選ぶと、空いている時間帯を確認できます';
+    instruction.appendChild(instrSub);
+    container.appendChild(instruction);
+
     // ナビゲーション
     const nav = el('div', 'cal-calendar__nav');
 

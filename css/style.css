@@ -869,12 +869,18 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-/* calendar container */
+/* calendar container — カードスタイルで背景と区別 */
 .sec-rsv__calendar-wrap {
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
-  padding: 0 16px 32px;
+  padding: 24px 24px 32px;
+  background: #fdf9f3;
+  border: 1.5px solid rgba(232, 155, 39, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(200, 133, 33, 0.08);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* =============================================
@@ -952,10 +958,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =============================================
+   CALENDAR UI — アクション指示テキスト
+   ============================================= */
+.cal-instruction {
+  text-align: center;
+  padding: 0 0 20px;
+}
+
+.cal-instruction__main {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #324451;
+  margin: 0 0 4px;
+  line-height: 1.6;
+}
+
+.cal-instruction__sub {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =============================================
    CALENDAR UI — 月カレンダー
    ============================================= */
 .cal-calendar {
   background: #fff;
+  border-radius: 12px;
+  padding: 12px;
 }
 
 .cal-calendar__nav {
@@ -1043,17 +1077,34 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cal-calendar__day--available {
-  background: #fff8f0;
-  color: #c88521;
+  background: #fff0dc;
+  color: #c17a30;
   font-weight: 700;
   cursor: pointer;
-  border: 1.5px solid #e89b27;
+  border: 2px solid #e89b27;
+  position: relative;
+}
+
+.cal-calendar__day--available::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  animation: cal-pulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cal-pulse {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: rgba(232, 155, 39, 0.35); }
 }
 
 .cal-calendar__day--available:hover {
   background: #e89b27;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(232, 155, 39, 0.3);
+  box-shadow: 0 3px 12px rgba(232, 155, 39, 0.35);
+  transform: scale(1.05);
 }
 
 .cal-calendar__day--available:active {
@@ -1906,6 +1957,21 @@ h1, h2, h3, h4, h5, h6 {
 
   .sec-rsv__check-text {
     font-size: 12px;
+  }
+
+  .sec-rsv__calendar-wrap {
+    padding: 16px 12px 24px;
+    border-radius: 12px;
+  }
+
+  .cal-calendar {
+    padding: 8px;
+  }
+
+  .cal-calendar__day {
+    min-width: 36px;
+    min-height: 40px;
+    font-size: 14px;
   }
 
 
