@@ -2096,3 +2096,115 @@ h1, h2, h3, h4, h5, h6 {
   }
 
 }
+
+/* =============================================
+   MICRO SURVEY — 離脱サーベイ
+   ============================================= */
+.lp-survey {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 3px solid #E89B27;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+  padding: 18px 24px 22px;
+  z-index: 10000;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 1.0s ease-out;
+  transition-delay: 0.5s;
+}
+
+.lp-survey--visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.lp-survey--hiding {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  transition-delay: 0s;
+}
+
+.lp-survey__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.lp-survey__close:hover {
+  color: #333;
+}
+
+.lp-survey__question {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 14px;
+  padding-right: 28px;
+  line-height: 1.5;
+}
+
+.lp-survey__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lp-survey__option {
+  background: #fdf9f3;
+  border: 1px solid #E89B27;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #5a3e1b;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.lp-survey__option:hover {
+  background: #fff0dc;
+}
+
+.lp-survey__option:active {
+  transform: scale(0.97);
+  background: #ffe4b8;
+}
+
+/* --- モバイル --- */
+@media (max-width: 600px) {
+  .lp-survey {
+    padding: 14px 16px 18px;
+  }
+
+  .lp-survey__question {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .lp-survey__options {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .lp-survey__option {
+    text-align: center;
+    padding: 10px 16px;
+    white-space: normal;
+  }
+}
