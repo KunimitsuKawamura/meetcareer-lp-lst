@@ -122,6 +122,9 @@
   });
   window.addEventListener('cal:booking_complete', function () {
     sendEvent('lp_cal_booking_complete');
+    // lst経由の予約もhubspot_meeting_bookedとして記録する
+    // source: 'lst' で本体（meetcareer.net）の同名イベントと区別可能
+    sendEvent('hubspot_meeting_booked', { source: 'lst' });
     if (typeof clarity === 'function') clarity('set', 'cal_step', 'booking_complete');
   });
 
